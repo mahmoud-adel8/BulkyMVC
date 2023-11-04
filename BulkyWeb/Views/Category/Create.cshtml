@@ -6,6 +6,9 @@
             <h2 class="text-primary">Create Category</h2>
             <hr />
         </div>
+        <div class="row">
+            <div class="col-md-6 pb-0 pt-2 alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly"></div>
+        </div>
         <div class="mb-3 row p-1">
             <label asp-for="Name" class="p-0"></label>
             <input asp-for="Name" type="text" class="mt-2 form-control" />

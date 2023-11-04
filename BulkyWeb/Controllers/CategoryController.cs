@@ -25,7 +25,7 @@ namespace BulkyWeb.Controllers
         {
             if (category.Name != null && category.Name.ToLower() == category.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("Name", "Name and Display Order cannot be exactly the same");
+                ModelState.AddModelError("", "Name and Display Order cannot be exactly the same");
             }
             if (ModelState.IsValid)
             {
