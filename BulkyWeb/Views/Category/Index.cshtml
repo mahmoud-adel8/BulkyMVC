@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(Category category in Model)
+            @foreach(Category category in Model.OrderBy(c => c.DisplayOrder))
             {
                 <tr>
                     <td>@category.Name</td>
