@@ -4,7 +4,7 @@ using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyWeb.Controllers
+namespace BulkyWeb.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
@@ -23,7 +23,7 @@ namespace BulkyWeb.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Category category) 
+        public IActionResult Create(Category category)
         {
             if (category.Name != null && category.Name.ToLower() == category.DisplayOrder.ToString())
             {
