@@ -1,6 +1,4 @@
-﻿using Bulky.DataAccess.Repository.IRepository;
-
-namespace Bulky.DataAccess.Repository
+﻿namespace Bulky.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
