@@ -19,11 +19,13 @@ namespace BulkyWeb.Areas.Admin.Controllers
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
             return View(objProductList);
         }
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
             ProductVM productVM = new()
             {
-                Product = new Product(),
+                Product = (id == null || id == 0) ?
+                    new Product() : 
+                    _unitOfWork.Product.Get(p => p.Id == id),
                 CategoryList = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
                 {
                     Text = c.Name,
@@ -33,7 +35,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View(productVM);
         }
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile file)
         {
             if (ModelState.IsValid)
             {
@@ -48,31 +50,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 Value = c.Id.ToString()
             });
             return View(productVM);
-        }
-        public ActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Product? productFromDb = _unitOfWork.Product.Get(p => p.Id == id);
-            if (productFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(productFromDb);
-        }
-        [HttpPost]
-        public IActionResult Edit(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Update(product);
-                _unitOfWork.Save();
-                TempData["success"] = "Product updated successfully";
-                return RedirectToAction("Index");
-            }
-            return View();
         }
         public IActionResult Delete(int? id)
         {
