@@ -36,7 +36,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View(productVM);
         }
         [HttpPost]
-        public IActionResult Upsert(ProductVM productVM, IFormFile file)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
 
             if (ModelState.IsValid)
